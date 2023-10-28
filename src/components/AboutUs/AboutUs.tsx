@@ -9,7 +9,7 @@ function AboutUs() {
 
     <CardGroup>
       <Card className="mx-2">
-        <Card.Img variant="top" src="src/assets/images/card1.jpg" />
+        <Card.Img variant="top" src="/assets/images/card1.jpg" />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <Card.Text>
@@ -20,7 +20,7 @@ function AboutUs() {
       </Card>
 
       <Card className="mx-2">
-        <Card.Img variant="top" src="src/assets/images/card2.jpg" />
+        <Card.Img variant="top" src="/assets/images/card2.jpg" />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <Card.Text>
@@ -31,7 +31,7 @@ function AboutUs() {
       </Card>
 
       <Card className="mx-2">
-        <Card.Img variant="top" src="src/assets/images/card3.jpg" />
+        <Card.Img variant="top" src="/assets/images/card3.jpg" />
         <Card.Body>
           <Card.Title>Card title</Card.Title>
           <Card.Text>
