@@ -52,9 +52,9 @@ const ProductTable = () => {
     // Por ejemplo:
     // ProductService.deleteProduct(product.id)
     // Luego actualiza los datos, lo siguiente es solo un ejemplo:
-    const updatedProducts = products.filter((p) => p.id !== product.id);
+    const updatedProducts = products.filter((p) => 
+    p.id !== product.id);
     setProducts(updatedProducts);
-    
     // Cierra el modal si es necesario
     setShowModal(false);
   };
@@ -145,4 +145,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default ProductTable;

@@ -5,7 +5,6 @@ import { Product } from '../../types/Product';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import { ProductService } from '../../services/ProductService';
 
 type ProductModalProps = {
   show: boolean;
@@ -39,19 +38,16 @@ const ProductModal: React.FC<ProductModalProps> = ({
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (pro: Product) => {
     try {
-      await ProductService.deleteProduct(prod.id);
-      toast.success("Producto Borrado", {
-        position: "top-center",
+      const isNew = pro.id === 0;
+      await onDelete(prod); // Llama a la función onDelete con el producto a eliminar
+      toast.success(isNew ? 'Producto creado' : 'Producto eliminado', {
+        position: 'top-center',
       });
-
-      // Una vez que la eliminación es exitosa, actualiza los datos
-      onHide();
-      refreshData(prevState => !prevState);
+      onHide(); // Cierra el modal después de la eliminación
     } catch (error) {
-      console.error(error);
-      console.error('A ocurrido un Error');
+      console.error('Ha ocurrido un Error');
     }
   };
 
@@ -187,8 +183,4 @@ const ProductModal: React.FC<ProductModalProps> = ({
   );
 };
 
-export default ProductModal;
-function refreshData(arg0: (prevState: any) => boolean) {
-  throw new Error('Function not implemented.');
-}
-
+export default ProductModal;
