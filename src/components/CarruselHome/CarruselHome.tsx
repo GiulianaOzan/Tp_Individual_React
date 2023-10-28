@@ -44,4 +44,4 @@ const carruselHome = () => {
   )
 }
 
-export default carruselHome
+export default carruselHome;

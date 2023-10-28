@@ -12,4 +12,4 @@ const Componentes = () => {
   )
 }
 
-export default Componentes
+export default Componentes;
