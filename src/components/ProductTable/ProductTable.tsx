@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../../types/Product";
 import { ProductService } from "../../services/ProductService";
 import { Button, Table } from "react-bootstrap";
@@ -36,7 +36,7 @@ const ProductTable = () => {
     };
   };
 
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product>(initializeNewProduct());
 
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(ModalType.NONE);
