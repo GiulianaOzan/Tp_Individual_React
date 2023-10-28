@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "../../types/Product";
 import { ProductService } from "../../services/ProductService";
 import { Button, Table } from "react-bootstrap";
@@ -11,16 +11,19 @@ import { DeleteButton } from "../DeleteButton/DeleteButton";
 const ProductTable = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [refreshData, setRefreshData] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const products = await ProductService.getProducts();
-      setProducts(products);
-      setIsLoading(false);
+      try {
+        const products = await ProductService.getProducts();
+        setProducts(products);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchProducts();
-  }, [refreshData]);
+  }, []);
 
   const initializeNewProduct = (): Product => {
     return {
@@ -46,30 +49,26 @@ const ProductTable = () => {
     setShowModal(true);
   };
 
-  const handleDeleteProduct = (product: Product) => {
-    // Realiza la lógica para eliminar el producto aquí
-    // Puedes utilizar ProductService u otra lógica para eliminar el producto
-    // Por ejemplo:
-    // ProductService.deleteProduct(product.id)
-    // Luego actualiza los datos, lo siguiente es solo un ejemplo:
-    const updatedProducts = products.filter((p) => 
-    p.id !== product.id);
-    setProducts(updatedProducts);
-    // Cierra el modal si es necesario
+  const handleDeleteProduct = async (product: Product) => {
+    try {
+      await ProductService.deleteProduct(product.id);
+      const updatedProducts = products.filter((p) => p.id !== product.id);
+      setProducts(updatedProducts);
+    } catch (error) {
+      console.error(error);
+    }
     setShowModal(false);
   };
 
   const handleUpdateProduct = (updatedProduct: Product) => {
-    // Realiza la lógica para actualizar el producto aquí
-    // Puedes utilizar ProductService u otra lógica para actualizar el producto
-    // Por ejemplo:
-    // ProductService.updateProduct(updatedProduct.id, updatedProduct)
-    // Luego actualiza los datos, lo siguiente es solo un ejemplo:
-    const updatedProducts = products.map((p) =>
-      p.id === updatedProduct.id ? updatedProduct : p
-    );
-    setProducts(updatedProducts);
-    // Cierra el modal si es necesario
+    try {
+      const updatedProducts = products.map((p) =>
+        p.id === updatedProduct.id ? updatedProduct : p
+      );
+      setProducts(updatedProducts);
+    } catch (error) {
+      console.error(error);
+    }
     setShowModal(false);
   };
 
@@ -121,7 +120,9 @@ const ProductTable = () => {
                 </td>
                 <td>
                   <DeleteButton
-                    onClick={() => handleClick("Borrar Producto", product, ModalType.DELETE)}
+                    onClick={() =>
+                      handleClick("Borrar Producto", product, ModalType.DELETE)
+                    }
                   />
                 </td>
               </tr>
@@ -145,4 +146,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default ProductTable;

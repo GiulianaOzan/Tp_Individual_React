@@ -28,7 +28,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
   const handleSaveUpdate = async (pro: Product) => {
     try {
       const isNew = pro.id === 0;
-      await onSaveUpdate(pro); // Llama a la función onSaveUpdate con el producto para crear o actualizar
+      await onSaveUpdate(pro);
       toast.success(isNew ? 'Producto Creado' : 'Producto Actualizado', {
         position: 'top-center',
       });
@@ -38,14 +38,14 @@ const ProductModal: React.FC<ProductModalProps> = ({
     }
   };
 
-  const handleDelete = async (pro: Product) => {
+  const handleDelete = async () => {
     try {
-      const isNew = pro.id === 0;
-      await onDelete(prod); // Llama a la función onDelete con el producto a eliminar
+      const isNew = prod.id === 0;
+      await onDelete(prod);
       toast.success(isNew ? 'Producto creado' : 'Producto eliminado', {
         position: 'top-center',
       });
-      onHide(); // Cierra el modal después de la eliminación
+      onHide();
     } catch (error) {
       console.error('Ha ocurrido un Error');
     }
@@ -183,4 +183,4 @@ const ProductModal: React.FC<ProductModalProps> = ({
   );
 };
 
-export default ProductModal;
+export default ProductModal;
