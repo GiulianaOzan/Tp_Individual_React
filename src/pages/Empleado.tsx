@@ -1,14 +1,14 @@
+import DtoEmpleadoTable from "../components/ProductTable/EmpleadoTable";
 import EmpleadoTable from "../components/ProductTable/EmpleadoTable";
 
 
-const HomePage = () => {
+
+const Empleado = () => {
   return (
     <>
-         <>
       <EmpleadoTable/>
-    </>
     </>
   )
 }
 
-export default HomePage;
+export default Empleado;

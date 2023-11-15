@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import Loader from "./components/Loader/Loader";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import NavBarChef from "./components/NavBar-Chef/NavBarChef";
 
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
     <>
       <ToastContainer/>
       <Router>
-          <Header/>
-          <Container style={{minHeight: '100vh', minWidth: '100%', padding:'0'}}>
+          <Container style={{minHeight: '85vh', minWidth: '100%', padding:'0'}}>
             <Suspense fallback={<Loader/>}>
+            <NavBarChef/>
               <AppRoutes/>
             </Suspense>
           </Container>
